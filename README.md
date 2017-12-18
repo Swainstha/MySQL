@@ -6,9 +6,9 @@ MySQL Assignments
     Creating statement...
     Enter the last name whose data you want to query
     *abbas*
-    The time taken for  query without index 3398856
+    The time taken for  query without index 3398856 ns
     ID: 9, Name: Abbye, Last: abbas, Place: Abingdon
-    The time taken for  for query with index 460938
+    The time taken for  for query with index 460938 ns
     ID: 9, Name: Abbye, Last: abbas, Place: Abingdon
 
     Process finished with exit code 0
