@@ -14,7 +14,7 @@ MySQL Assignments
     Process finished with exit code 0
     
  # Details
-    -The sql file is located in path MySQL/Student.sql
+    - The sql file is located in path MySQL/Student.sql
     - The file can be imported in localhost/phpmyadmina and it will create the database Student along with table student and insert 10000 data into the table.
     - the jar file is located in path MySQL/out/artifacts/MySQL_jar/Mysql.jar
     - The jar file can be run using "java -jar MySQL.jar".
