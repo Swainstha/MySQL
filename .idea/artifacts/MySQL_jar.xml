@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MySQL:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MySQL_jar</output-path>
+    <root id="archive" name="MySQL.jar">
+      <element id="module-output" name="MySQL" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mongodb-driver-3.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mongo-java-driver-3.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mysql-connector-java-5.1.45-bin.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

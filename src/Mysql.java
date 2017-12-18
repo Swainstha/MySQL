@@ -27,21 +27,14 @@ public class Mysql {
             System.out.println("Enter the last name whose data you want to query");
             String data = scanner.nextLine();
 
-            ResultSet rs= QuerySimple(conn,data," query without index ");
+            /** Query without index **/
+            QuerySimple(conn,data," query without index ");
 
-            //STEP 5: Extract data from result set
-            while(rs.next()){
-                //Display values
-                System.out.print("ID: " + rs.getInt("id"));
-                System.out.print(", Name: " + rs.getString("name"));
-                System.out.print(", Last: " + rs.getString("last"));
-                System.out.println(", Place: " + rs.getString("place"));
-            }
+            /** Query with index on last name **/
+            QueryWithIndex(conn, data);
 
-            rs = QueryWithIndex(conn, data);
 
             //STEP 6: Clean-up environment
-            rs.close();
             conn.close();
         }catch(SQLException se){
             //Handle errors for JDBC
@@ -52,33 +45,52 @@ public class Mysql {
         }
     }//end main
 
-    public static ResultSet QuerySimple(Connection conn, String data, String choice) throws SQLException {
+    public static void QuerySimple(Connection conn, String data, String choice) throws SQLException {
 
         String sql = "SELECT * FROM student WHERE last=?";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1,data);
+
         long time1 = System.nanoTime();
-        ResultSet set = stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
         long time2 = System.nanoTime();
-        System.out.println("The time taken " + " " + choice + (time2 - time1));
+
+        System.out.println("The time taken for " + choice + (time2 - time1) + "ns");
+        showData(rs);
+        rs.close();
         stmt.close();
-        return set;
+
     }
 
-    public static ResultSet QueryWithIndex(Connection conn, String data) throws SQLException {
+    public static void QueryWithIndex(Connection conn, String data) throws SQLException {
 
         String sql = "CREATE INDEX last_index ON student (last)";
         PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.executeQuery();
+        stmt.executeUpdate();
 
         QuerySimple(conn, data," for query with index ");
 
-        sql = "DROP INDEX last_index ON Student";
+        sql = "DROP INDEX last_index ON student";
         stmt = conn.prepareStatement(sql);
-        stmt.executeQuery();
+        stmt.executeUpdate();
 
         stmt.close();
 
+    }
+
+    public static void showData(ResultSet rs) {
+        //STEP 5: Extract data from result set
+        try{
+            while(rs.next()) {
+                //Display values
+                System.out.print("ID: " + rs.getInt("id"));
+                System.out.print(", Name: " + rs.getString("name"));
+                System.out.print(", Last: " + rs.getString("last"));
+                System.out.println(", Place: " + rs.getString("place"));
+            }
+        } catch (java.sql.SQLException sql) {
+            System.out.println("SQL Exception");
+        }
     }
 
 }//end Mysql
