@@ -16,7 +16,7 @@ MySQL Assignments
  # Details
     - The sql file is located in path MySQL/Student.sql
     - The file can be imported in localhost/phpmyadmina and it will create the database Student along with table student and insert 10000 data into the table.
-    - the jar file is located in path MySQL/MySQL.jar
+    - the jar file is located in path MySQL/out/artifacts/MySQL_jar/Mysql.jar
     - The jar file can be run using "java -jar MySQL.jar".
     - The program creates on index on last name, so query is done based on index in last name.
     - The program will prompt the user to enter the last name. Eg. abbas, diggs, aaron, abbott
